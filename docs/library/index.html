@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#174d3e">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="从王曼巴的历史公众号文章中查找原始记录。按关键词与年份检索，阅读原文片段和来源；目前未接入 AI。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>王曼巴 · 投资文章库</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#query">跳到文章检索</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="王曼巴投资文章库首页"><span class="mark" aria-hidden="true">王</span><span>王曼巴<span class="brand-note">投资文章库 / INVESTMENT ARCHIVE</span></span></a>
+    <span class="edition-badge"><span aria-hidden="true"></span>原文检索版 · AI 未接入</span>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy"><p class="eyebrow">每一个判断，都回到当时的文字</p><h1 id="page-title">过去怎么想，<br>去原文里找。</h1><p class="lead">查一个行业、一家公司，或一种投资逻辑。这里呈现文章中的原始记录，而不是替作者生成新的观点。</p></div>
+      <aside class="archive-card" aria-labelledby="archive-title"><div class="archive-card-top"><span class="small-label" id="archive-title">公开历史资料</span><span class="archive-seal" aria-hidden="true">原文<br>可溯</span></div><p class="archive-count"><strong id="article-count">—</strong><span>篇可检索正文</span></p><p id="date-range" class="archive-range">正在读取文章记录…</p><p class="archive-footnote">历史观点 ≠ 当前立场<br>文章记录 ≠ 实际买卖</p></aside>
+    </section>
+    <section class="workspace" aria-labelledby="search-title">
+      <div class="workspace-heading"><div><p class="eyebrow">READ THE RECORD</p><h2 id="search-title">想找哪段记录？</h2></div><span class="local-label">本页关键词检索</span></div>
+      <form id="search-form" autocomplete="off"><label for="query" class="visually-hidden">搜索历史文章关键词，最多 120 字</label><div class="search-row"><input id="query" name="query" type="search" maxlength="120" placeholder="例如：中国船舶、人工智能、估值" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false"><button id="search-button" class="primary-button" type="submit" disabled><span>查找原文</span><span aria-hidden="true">↗</span></button></div><p id="input-note" class="input-note">不调用模型，不保存你的输入。原文来自已授权公开的历史文章。</p></form>
+      <div class="suggestions" aria-label="试试这些关键词"><span>试着查</span><button type="button" class="suggestion" data-query="人工智能" disabled>人工智能</button><button type="button" class="suggestion" data-query="中国船舶" disabled>中国船舶</button><button type="button" class="suggestion" data-query="估值" disabled>估值</button></div>
+      <div class="view-and-filter"><div class="view-tabs" role="tablist" aria-label="查看方式"><button type="button" id="search-tab" role="tab" aria-selected="true" aria-controls="search-view" tabindex="0">原文检索</button><button type="button" id="directory-tab" role="tab" aria-selected="false" aria-controls="directory-view" tabindex="-1">文章目录</button></div><div class="filters"><label for="year-filter">年份<select id="year-filter" disabled><option value="all">全部年份</option></select></label><label for="sort-order">排序<select id="sort-order" disabled><option value="relevance">相关度优先</option><option value="dateDesc">时间从近到远</option><option value="dateAsc">时间从远到近</option></select></label></div></div>
+      <p class="input-note">问题中的年份与年份筛选同时生效；时间排序只排列匹配记录，不代表作者首次提出观点的日期。</p>
+      <div id="loading-state" class="state-panel" role="status"><span class="loading-dot" aria-hidden="true"></span><p>正在加载历史文章…</p><span>只从本站读取公开资料，不连接模型。</span></div>
+      <div id="error-state" class="state-panel error-state" hidden><p>文章库暂时没有加载成功</p><span>可能是网络中断。请重试，或稍后刷新页面。</span><button type="button" id="retry-button" class="secondary-button">重新加载</button></div>
+      <div id="loaded-content" hidden>
+        <section id="search-view" role="tabpanel" aria-labelledby="search-tab" tabindex="0"><div id="search-empty" class="search-empty"><span class="empty-icon" aria-hidden="true">“</span><h3>先找依据，再谈判断。</h3><p>输入关键词，查看相关的连续原文片段。<br>问题也可以输入，但这里不会生成 AI 回答。</p></div><div id="search-output" hidden><div class="query-bubble"><span>本次查找</span><p id="query-display"></p></div><div class="result-context"><p id="search-summary" role="status" aria-live="polite" aria-atomic="true"></p><p id="historical-warning" class="historical-warning" hidden>这是历史文章检索，不能据此确认作者当前持仓、买卖或账户收益，也不提供预测或操作建议。</p></div><div id="search-results" class="result-list"></div></div></section>
+        <section id="directory-view" role="tabpanel" aria-labelledby="directory-tab" tabindex="0" hidden><div class="directory-heading"><div><h3>按时间翻阅</h3><p>上方关键词、年份和排序同样适用于目录。</p></div><p id="directory-count" role="status" aria-live="polite" aria-atomic="true"></p></div><div id="directory-results" class="directory-list"></div><nav id="pagination" class="pagination" aria-label="文章目录分页"><button type="button" id="previous-page" class="secondary-button">上一页</button><span id="page-label"></span><button type="button" id="next-page" class="secondary-button">下一页</button></nav></section>
+      </div>
+      <noscript><p class="noscript-warning">当前浏览器未运行 JavaScript，无法加载文章检索。请开启 JavaScript，或换一个浏览器重试。本页没有生成式 AI 回答。</p></noscript>
+    </section>
+    <section class="scope-note" aria-labelledby="scope-title"><span class="scope-symbol" aria-hidden="true">i</span><div><h2 id="scope-title">这份资料库的边界</h2><p id="coverage-note">仅使用已公开且获授权的历史文章；记录不是完整发文档案。未收集到不代表当时没有发文。</p><p>正文为提取文本，原文链接与少量正文链接做过安全清理，图片和图表未转写。标题推断日期不等于精确发布时间，请以来源页为准。</p><p>每段引文为连续原文片段，仍需阅读全文理解语境。检索结果不代表最新观点、真实持仓或投资建议。未接入 AI，不生成作者的新观点。</p></div></section>
+    <footer><span>王曼巴 · 历史文字，原文可溯</span><p>无统计脚本，不保存查询输入；托管平台可能保留常规访问日志。<br>点击原文将打开微信公众号页面，访问情况由微信决定。</p></footer>
+  </main>
+</body>
+</html>

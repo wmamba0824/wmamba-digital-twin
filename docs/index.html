@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.onrender.com; img-src 'self' data:; base-uri 'self'; form-action 'self'; object-src 'none'">
+  <meta name="description" content="基于王曼巴公开历史文章的资料助手，提供可核对的日期、原文片段和链接。非作者本人。">
+  <title>王曼巴 · 数字分身</title>
+  <link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./style.css">
+  <script type="module" src="./client.js"></script>
+</head>
+<body>
+<main class="persona-shell">
+  <header class="persona-top"><a class="persona-brand" href="./"><span>王</span>王曼巴 · 数字分身</a><a href="./library/index.html">文章库 ↗</a></header>
+  <section class="persona-intro"><p class="persona-eyebrow">HISTORICAL WORDS, TRACEABLE SOURCES</p><h1>从当时的文字，<br>聊起。</h1><p>基于公开历史文章的AI资料助手，不是王曼巴本人。<br>回看历史判断，每一条依据都能点开核对。</p></section>
+  <section class="persona-status" aria-live="polite"><strong id="service-title">正在加载历史文章</strong><p id="service-detail">无需注册或登录。原文检索在本页完成，不要求你提供模型密钥。</p><p id="budget-detail"></p></section>
+  <section id="conversation" class="persona-chat" aria-label="本页对话"><div class="persona-welcome"><h2>想回看哪一段投资思考？</h2><p>可以先打个招呼，或聊一家公司、一个行业、某个年份。有了主题后，再问“为什么”“后来呢”。</p><p class="persona-meta">人物资料库241篇，已知日期2021-01-01至2026-01-04，另1篇日期未知。独立文章库248篇；筛选口径不同，不代表完整历史。</p><div class="persona-suggestions"><button type="button" data-question="中国船舶的历史观点">中国船舶的历史观点</button><button type="button" data-question="2024年银行估值">2024年银行估值</button><button type="button" data-question="你能做什么">你能做什么</button></div></div></section>
+  <form class="persona-form" id="question-form"><label for="question">你的问题</label><textarea id="question" rows="3" maxlength="800" placeholder="先打个招呼，或输入公司、行业、年份，最多800字" required></textarea><label class="persona-consent"><input type="checkbox" id="consent">使用AI生成时，我同意将问题、最近最多4轮对话及相关原文片段发送给DeepSeek。请勿填写个人隐私。</label><div class="persona-actions"><button type="button" id="search">只查原文</button><button type="submit" id="chat" class="persona-primary" disabled>AI后端迁移中</button></div><p id="notice" role="status" aria-live="polite">正在加载资料……</p></form>
+  <footer class="persona-footer"><button type="button" id="clear">清空本页对话</button><button type="button" id="refresh">刷新AI服务状态</button><p>历史文章中的持仓与交易描述属于作者当时的自述，不是核验后的交易记录，不代表当前持仓或账户收益。这里不提供实时行情、荐股或收益承诺。</p><p>问题和对话只在本页内存中保留，刷新即清空。AI可用后，以随机浏览器标识近似累计10次；清除网站数据或换浏览器可能重新计数，不是严格每人限额。全站共用原100次授权池，失败生成也计数，用完暂停，不因迁移或重启重置。</p><p>浏览器标识保存在本地存储，服务端只保存派生标识及额度，不收集登录账号、姓名或邮箱。托管平台和模型服务可能按各自政策保留日志。</p><nav><a href="./library/index.html">浏览248篇历史文章 ↗</a></nav></footer>
+</main>
+</body></html>
