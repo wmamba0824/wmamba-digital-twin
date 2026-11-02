@@ -1,0 +1,8 @@
+{
+  "envId": null,
+  "region": "ap-shanghai",
+  "functions": [
+    {"name":"wmamba-persona-api","type":"Event","dir":".","runtime":"Nodejs20.19","handler":"index.main","memorySize":256,"timeout":40,"installDependency":true,"envVariables":{"PERSONA_AI_ENABLED":"false","API_PATH_PREFIX":"/persona"}},
+    {"name":"wmamba-budget-import","type":"Event","dir":".","runtime":"Nodejs20.19","handler":"admin-import.main","memorySize":256,"timeout":30,"installDependency":true}
+  ]
+}
